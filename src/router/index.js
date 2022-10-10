@@ -13,7 +13,7 @@ const routes = [
     component: () => import('../views/AccueilView.vue')
   },
   {
-    path: '/src/views/QuizView.vue',
+    path: '/QuizView.vue',
     name: 'Quiz',
     component: () => import('../views/QuizView.vue')
   }
