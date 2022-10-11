@@ -21,7 +21,8 @@ export default {
   methods: {  
 
     getAllcountry(){
-      axios.get("https://restcountries.com/v3.1/all")
+      axios
+      .get("https://restcountries.com/v3.1/all")
       .then((res) => {
           console.log(res.data)
       })

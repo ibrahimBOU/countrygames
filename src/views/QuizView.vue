@@ -5,16 +5,17 @@
             <MyFormulaire/>
         </template>
         <template v-else>
-        <h1>OKOK</h1> 
+       <MyQuiz/>
             
         </template>
     </div>
 </template>
 <script>
 import MyFormulaire from "../components/MyFormulaire.vue";
+import MyQuiz from "@/components/MyQuiz.vue";
 
 export default {
-    components: { MyFormulaire },
+    components: { MyFormulaire, MyQuiz },
 
     data() {
         return {
