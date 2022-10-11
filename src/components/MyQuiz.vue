@@ -1,7 +1,7 @@
 <template >
     <div class="MyQuiz">
-        <div>
-            <img src="paysUnique.flag" alt="">
+        <div :key="index" v-for="(pays, index) in pays">
+            <img src="pays.flags.png" alt="">
         </div>
     </div>
 </template>
@@ -12,20 +12,19 @@ export default {
     name:"MyQuiz",
     data() {
         return {
-         flag : this.$route.params.flag,
-         PaysUnique: []   
+         pays : null   
         }
     },
     mounted() {
-       this.getCountryById()
+       this.getCountries()
     },
     methods: {
-        getCountryById() {
+        getCountries() {
             axios
-            .get('https://restcountries.com/v3.1/name/$(this.id)')
+            .get(`https://restcountries.com/v3.1/all`)
             .then((response) => {
-                this.PaysUnique = response.data[0];
-                console.log(response)
+                this.pays = response.data;
+                console.log(this.pays)
             });
         }
 },
