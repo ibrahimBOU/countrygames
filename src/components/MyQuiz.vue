@@ -1,7 +1,7 @@
 <template >
     <div class="MyQuiz">
         <div :key="index" v-for="(pays, index) in pays">
-            <img src="pays.flags.png" alt="">
+            <img :src="pays.flags.png" alt="">
         </div>
     </div>
 </template>
