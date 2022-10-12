@@ -2,10 +2,12 @@
     <div class="MyQuiz">
         <div v-if="randompays != null">
             <img :src="randompays.flags.png" alt="">
+            <h1>{{ randompays.translations.fra }}</h1>
+            <!-- <input v-if="randompays === "></input> -->
         </div>
-        <div :key="index" v-for="(pays, index) in pays">
-            <h1>{{ pays.translations.fra }}</h1>
-        </div>
+
+            
+
     </div>
 </template>
 <script>
