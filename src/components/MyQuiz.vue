@@ -2,17 +2,12 @@
     <div class="MyQuiz">
         <div v-if="randompays != null">
             <img :src="randompays.flags.png" alt="">
-            <h1>{{ randompays.translations.fra }}</h1>
+            <h1>{{ randompays.translations.fra.common }}</h1>
             <input placeholder="ta reponse" v-model="answer">
-            <h1 v-if="answer === true ">True</h1>
+            <h1 v-if="valid == true ">True</h1>
             <h1 v-else>False</h1>
-            <button @click="valid">Valider la reponse</button>
-        
-
+            <button @click="checkAnswer">Valider la reponse</button>
         </div>
-
-            
-
     </div>
 </template>
 <script>
@@ -25,6 +20,7 @@ export default {
          pays : null ,
          randompays : null,
          answer : null,
+         valid : null,
         }
     },
     mounted() {
@@ -46,12 +42,13 @@ export default {
                 console.log(this.randompays)
             },
             checkAnswer(){
-                if(this.valid === this.randompays)
-                this.answer = "true"
-                else{
-                    this.answer = "false"
+                if(this.answer == this.randompays.translations.fra.common){
+                this.valid = true
                 }
-                console.log(this.answer)
+                else{
+                    this.valid = false
+                }
+                console.log(this.valid)
             }
 
     },
