@@ -2,8 +2,9 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    nom : '',
-    prenom:'',
+    nom : [],
+    prenom:[],
+    score:[],
   },
   getters: {
   },
@@ -14,6 +15,10 @@ export default createStore({
     setPrenom(state,prenom){
       state.prenom = prenom
     },
+    setScore(state,score){
+      state.score = score
+    }
+
   },
   actions: {
   },

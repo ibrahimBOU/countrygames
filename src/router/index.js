@@ -16,7 +16,12 @@ const routes = [
     path: '/QuizView.vue',
     name: 'Quiz',
     component: () => import('../views/QuizView.vue')
-  }
+  },
+  {
+    path: '/Score',
+    name:'score',
+    component: () => import('../views/ScoreView.vue')
+  },
 ]
 
 const router = createRouter({

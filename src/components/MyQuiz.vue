@@ -1,13 +1,18 @@
 <template >
     <div class="MyQuiz">
-        <div v-if="randompays != null">
-            <img :src="randompays.flags.png" alt="">
-            <h1>{{ randompays.translations.fra.common }}</h1>
+        <div v-if="this.compteur>9">
+            <h1>Le Jeu est terminé</h1>
+            <router-link to="/Score"><button v-on:click="this.setScore()">Score</button></router-link>
+          <router-link to="/accueil">  <button v-on:click="this.setScore()">Retour Accueil</button></router-link>
+        </div>
+        <div v-else>
+            <img :src="randompays.image" alt="">
+            <h1>{{ randompays.name }}</h1>
             <input placeholder="ta reponse" v-model="answer">
             <h1 v-if="valid == true ">True</h1>
             <h1 v-else>False</h1>
-            <button @click="checkAnswer">Valider la reponse</button>
-        </div>
+            <button v-on:click="QuestionXTime()">Valider la reponse</button>
+    </div>
     </div>
 </template>
 <script>
@@ -18,9 +23,14 @@ export default {
     data() {
         return {
          pays : null ,
-         randompays : null,
+         randompays : {
+                name:"",
+                image:"",
+         },
          answer : null,
          valid : null,
+         compteur : 0,
+         compteurjuste: 0,
         }
     },
     mounted() {
@@ -38,17 +48,43 @@ export default {
             },
             getRandomCountry(){
                 let randomcountry = Math.floor(Math.random() * this.pays.length)
-                this.randompays = this.pays[randomcountry]
-                console.log(this.randompays)
+                this.randompays.name = this.pays[randomcountry]["translations"]["fra"]["common"]
+                this.randompays.image = this.pays[randomcountry]["flags"]["png"]
+            
             },
-            checkAnswer(){
-                if(this.answer == this.randompays.translations.fra.common){
+            QuestionXTime() {
+                if(this.answer == this.randompays.name){
                 this.valid = true
                 }
                 else{
                     this.valid = false
                 }
-                console.log(this.valid)
+                this.compteur++
+                if(this.valid == true){
+                    this.compteurjuste++
+                }
+                this.getRandomCountry()
+                this.answer = ""
+             },
+            setScore(){
+                if(this.$store.state.score == "" ){
+                    let tabempty3 = []
+                
+
+                    tabempty3.push(this.compteurjuste)
+
+                    this.$store.commit("setScore",tabempty3)   
+                }else{
+                    let tabempty3 = this.$store.state.score
+                    
+
+                    tabempty3.push(this.compteurjuste)
+
+                    this.$store.commit("setScore",tabempty3)
+                }
+                
+                // this.$router.push({})
+                // pour rediriger l'utlilisateur vers une page
             }
 
     },
