@@ -31,6 +31,9 @@ export default {
 
             this.$store.commit("setNom", tabempty1)
             this.$store.commit("setPrenom", tabempty2)
+
+            console.log(this.$store.state.nom)
+            console.log(this.$store.state.prenom)
         }else{
             let tabempty1 = this.$store.state.nom
             let tabempty2 = this.$store.state.prenom
@@ -43,6 +46,9 @@ export default {
             
             this.$store.commit("setNom", tabempty1)
             this.$store.commit("setPrenom", tabempty2)
+
+            console.log(this.$store.state.nom)
+            console.log(this.$store.state.prenom)
         }
     
 
